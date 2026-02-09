@@ -29,8 +29,16 @@ void Logger::log(int lvl, const char *msg)
     const char* label = level_label[lvl];
 
     offset += snprintf(buffer + offset, sizeof(buffer) - offset,
-                       "%s%-5s%s  %s\n",
+                       "%s%-5s%s  %s ",
                        color, label, RESET, msg);
+    const char* heart = "♡";
+    int invisibile = strlen(color) + strlen(RESET);
+    int visibile = strlen(buffer) - invisibile;
+    while (visibile <= HEARTS_IN_LINE  && (offset + sizeof("♡")) < (int)sizeof(buffer)){
+        offset += snprintf(buffer + offset, sizeof(buffer) - offset, "%s", heart);
+        visibile++;
+    }
+    offset += snprintf(buffer + offset, sizeof(buffer) - offset, "\n");
     write(fd, buffer, offset);
 }
 
