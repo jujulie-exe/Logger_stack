@@ -3,8 +3,9 @@
 #include <ctime>
 #include <cstdio>
 #include <unistd.h>
+#include <cstring>
 
-
+#define HEARTS_IN_LINE 60
 
 class Logger
 {
