@@ -5,7 +5,7 @@
        /*♡♡♡♡♡♡♡♡♡♡♡GETTER♡♡♡♡♡♡♡♡♡♡♡♡♡*/
  
        /*♡♡♡♡♡♡♡♡♡♡♡FT♡♡♡♡♡♡♡♡♡♡♡♡♡*/
-void Logger::log(int lvl, const char *msg)
+void Logger::log(int lvl, const char *msg, int rightPadding)
 {
     if (static_cast<int>(_levelLogger) > lvl)
         return;
@@ -34,7 +34,11 @@ void Logger::log(int lvl, const char *msg)
     const char* heart = "♡";
     int invisibile = strlen(color) + strlen(RESET);
     int visibile = strlen(buffer) - invisibile;
-    while (visibile <= HEARTS_IN_LINE  && (offset + sizeof("♡")) < (int)sizeof(buffer)){
+    if (visibile > rightPadding){
+        offset += snprintf(buffer + offset, sizeof(buffer) - offset, "%s", heart);
+        visibile++;
+    }
+    while (visibile <= rightPadding  && (offset + sizeof("♡")) < (int)sizeof(buffer)){
         offset += snprintf(buffer + offset, sizeof(buffer) - offset, "%s", heart);
         visibile++;
     }

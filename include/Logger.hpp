@@ -5,7 +5,7 @@
 #include <unistd.h>
 #include <cstring>
 
-#define HEARTS_IN_LINE 60
+#define HEARTS_IN_LINE 42
 
 class Logger
 {
@@ -21,7 +21,7 @@ class Logger
        /*♡♡♡♡♡♡♡♡♡♡♡GETTER♡♡♡♡♡♡♡♡♡♡♡♡♡*/
  
        /*♡♡♡♡♡♡♡♡♡♡♡FT♡♡♡♡♡♡♡♡♡♡♡♡♡*/
-	   static void log(int lvl, const char *msg);
+	   static void log(int lvl, const char *msg, int rightPadding = HEARTS_IN_LINE);
 	   static void setLevelLog(Level level);
  
        /*♡♡♡♡♡♡♡♡♡♡♡OPERATOR♡♡♡♡♡♡♡♡♡♡♡♡♡*/
